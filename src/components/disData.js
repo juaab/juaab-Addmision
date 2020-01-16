@@ -3,6 +3,7 @@ import { firebase } from '../firebase/db'
 
 
 class DisData extends Component {
+
     state = {
         users: null
     }
@@ -21,6 +22,7 @@ class DisData extends Component {
             })
             .catch(err => console.log(err))
     }
+
     render() {
 
         const renderData = this.state.users && this.state.users.map((u, i) => {
@@ -32,12 +34,14 @@ class DisData extends Component {
                     <td>{u.b_day}</td>
                     <td>{u.nationality}</td>
                 </tr>
+
             )
         })
+
         return (
-            <div style={{marginTop:'20px'}}>
+            <div style={{ marginTop: '20px' }}>
                 <table className="table" >
-                    <thead style={{background:'gray',color:'white'}}>
+                    <thead style={{ background: 'gray', color: 'white' }}>
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Course</th>
@@ -52,7 +56,11 @@ class DisData extends Component {
                     </tbody>
                 </table>
             </div>
+
         )
+
     }
+
 }
+
 export default DisData

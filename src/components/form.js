@@ -26,7 +26,7 @@ class Form extends Component {
         languageProf: '',
         language_proficiency: '',
         study_japanese: '',
-    
+
     }
     handleChange = e => {
         this.setState({ [e.target.name]: e.target.value })
@@ -34,50 +34,47 @@ class Form extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-       
-            const firestore = firebase.firestore()
-            const ref = firestore.collection('addmissionforms')
-            ref.add({
-                course: this.state.course,
-                name: this.state.name,
-                f_name: this.state.f_name,
-                m_name: this.state.m_name,
-                b_day: this.state.b_day,
-                nationality: this.state.nationality,
-                occopation: this.state.occopation,
-                address: this.state.address,
-                tel: this.state.tel,
-                cell: this.state.cell,
-                email: this.state.email,
-                p_address: this.state.p_address,
-                ssc_p_year: this.state.ssc_p_year,
-                ssc_institute: this.state.ssc_institute,
-                ssc_gpa: this.state.ssc_gpa,
-                hsc_p_year: this.state.hsc_p_year,
-                hsc_institute: this.state.hsc_institute,
-                hsc_gpa: this.state.hsc_gpa,
-                languageProf: this.state.languageProf,
-                language_proficiency: this.state.language_proficiency,
-                study_japanese: this.state.study_japanese,
-            }).then(snap => {
-                ref.doc(snap.id).update({
-                    id: snap.id
-                })
-                    .then(u => {
-                        alert('data inseart sucessfully')
-                    })
-                    .catch(err => console.log(err))
+
+        const firestore = firebase.firestore()
+        const ref = firestore.collection('addmissionforms')
+        ref.add({
+            course: this.state.course,
+            name: this.state.name,
+            f_name: this.state.f_name,
+            m_name: this.state.m_name,
+            b_day: this.state.b_day,
+            nationality: this.state.nationality,
+            occopation: this.state.occopation,
+            address: this.state.address,
+            tel: this.state.tel,
+            cell: this.state.cell,
+            email: this.state.email,
+            p_address: this.state.p_address,
+            ssc_p_year: this.state.ssc_p_year,
+            ssc_institute: this.state.ssc_institute,
+            ssc_gpa: this.state.ssc_gpa,
+            hsc_p_year: this.state.hsc_p_year,
+            hsc_institute: this.state.hsc_institute,
+            hsc_gpa: this.state.hsc_gpa,
+            languageProf: this.state.languageProf,
+            language_proficiency: this.state.language_proficiency,
+            study_japanese: this.state.study_japanese,
+        }).then(snap => {
+            ref.doc(snap.id).update({
+                id: snap.id
             })
+                .then(u => {
+                    alert('data inseart sucessfully')
+                })
                 .catch(err => console.log(err))
-        
+        })
+            .catch(err => console.log(err))
+
     }
 
     render() {
-       
-
         return (
             <div>
-                
                 <h3 className="h3">Addmission form</h3>
                 <div className="container">
                     <div className="form-item">
@@ -87,32 +84,32 @@ class Form extends Component {
                                 <select name="course" className="form-control" id="choiceval" onChange={this.handleChange}  >
                                     <option className="form-control"  > Select</option>
                                     <option className="form-control" required="required" >Short Course(3months, 3 days in a week in the evening)</option>
-                                    <option className="form-control"   required="required" >N-5,N-4 & N-3 Course( 3 days in a week in the evening)</option>
+                                    <option className="form-control" required="required" >N-5,N-4 & N-3 Course( 3 days in a week in the evening)</option>
                                     <option className="form-control" required="required">JLPT preparation className</option>
                                 </select>
-                              
+
                             </div>
                             <br />
                             <h4 className="h4 text-center">Personal Information:</h4>
                             <div className="form-group">
                                 <label htmlFor="Name">Name:</label>
-                                <input type="name" className="form-control" id="nameval" name="name" onChange={this.handleChange} required="required"/>
-                               
+                                <input type="name" className="form-control" id="nameval" name="name" onChange={this.handleChange} required="required" />
+
                             </div>
                             <div className="form-group">
                                 <label htmlFor="Name">Father's Name:</label>
                                 <input type="name" className="form-control" id="fnameval" name="f_name" onChange={this.handleChange} required="required" />
-                             
+
                             </div>
                             <div className="form-group">
                                 <label htmlFor="Name">Mother's Name:</label>
-                                <input type="name" className="form-control" id="mnameval" name="m_name" onChange={this.handleChange} required="required"/>
-                                
+                                <input type="name" className="form-control" id="mnameval" name="m_name" onChange={this.handleChange} required="required" />
+
                             </div>
                             <div className="form-group">
                                 <label htmlFor="Name">Date of Birth:</label>
-                                <input type="date" className="form-control" id="bdayval" name="b_day" onChange={this.handleChange} required="required"/>
-                               
+                                <input type="date" className="form-control" id="bdayval" name="b_day" onChange={this.handleChange} required="required" />
+
                             </div>
                             <div className="form-group">
                                 <label htmlFor="state_id" className="control-label">Nationality</label>
@@ -123,17 +120,17 @@ class Form extends Component {
                                     <option value="Chinise">Chinies</option>
                                     <option value="Indian">Indian</option>
                                 </select>
-                                
+
                             </div>
                             <div className="form-group">
                                 <label htmlFor="Name">Occopation:</label>
-                                <input type="name" className="form-control" id="occoval" name="occopation" onChange={this.handleChange} required="required"/>
-                               
+                                <input type="name" className="form-control" id="occoval" name="occopation" onChange={this.handleChange} required="required" />
+
                             </div>
                             <div className="form-group">
                                 <label htmlFor="address">Present Address:</label>
-                                <input type="address" className="form-control" id="preval" name="address" onChange={this.handleChange} required="required"/>
-                                
+                                <input type="address" className="form-control" id="preval" name="address" onChange={this.handleChange} required="required" />
+
                             </div>
                             <div className="form-group">
                                 <label htmlFor="number">Contact info:</label>
@@ -185,7 +182,7 @@ class Form extends Component {
                                 <label htmlFor="message">Why do you want to study japanese?</label>
                                 <textarea className="form-control" rows="5" id="comment" name="study_japanese" onChange={this.handleChange}></textarea>
                             </div>
-                            <button type="submit" className="btn btn-success" >Submit</button>
+                            <button type="submit" className="btn btn-success"> Submit </button>
                         </form>
                     </div>
                 </div>
