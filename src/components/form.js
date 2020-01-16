@@ -26,51 +26,15 @@ class Form extends Component {
         languageProf: '',
         language_proficiency: '',
         study_japanese: '',
-        course_em: true,
-        nationality_em: true,
-        name_em: true,
-        f_name_em: true,
-        m_name_em: true,
-        b_day_em: true,
-        occopation_em: true,
-        address_em: true
+    
     }
     handleChange = e => {
-        this.setState({ [e.target.name]: e.target.value }, () => {
-
-            this.isSelect(this.state.course) ? this.setState({ course_em: true }) : this.setState({ course_em: false })
-            this.isSelect(this.state.nationality) ? this.setState({ nationality_em: true }) : this.setState({ nationality_em: false })
-            this.isEmpty(this.state.name) ? this.setState({ name_em: true }) : this.setState({ name_em: false })
-            this.isEmpty(this.state.f_name) ? this.setState({ f_name_em: true }) : this.setState({ f_name_em: false })
-            this.isEmpty(this.state.m_name) ? this.setState({ m_name_em: true }) : this.setState({ m_name_em: false })
-            this.isEmpty(this.state.b_day) ? this.setState({ b_day_em: true }) : this.setState({ b_day_em: false })
-            this.isEmpty(this.state.occopation) ? this.setState({ occopation_em: true }) : this.setState({ occopation_em: false })
-            this.isEmpty(this.state.address) ? this.setState({ address_em: true }) : this.setState({ address_em: false })
-        })
-
+        this.setState({ [e.target.name]: e.target.value })
     }
-
-    isSelect(value) {
-        if (value === 'Select') {
-
-            return false
-        } else {
-            return true
-        }
-    }
-    isEmpty(value) {
-
-        if (value.length > 0) {
-            return true
-        } else {
-            return false
-        }
-    }
-
 
     handleSubmit = e => {
         e.preventDefault()
-        if (this.state.course_em === true && this.state.f_name_em === true && this.state.nationality_em === true && this.state.m_name_em === true && this.state.name_em === true && this.state.b_day_em === true && this.state.occopation_em === true && this.state.address_em === true) {
+       
             const firestore = firebase.firestore()
             const ref = firestore.collection('addmissionforms')
             ref.add({
@@ -105,12 +69,11 @@ class Form extends Component {
                     .catch(err => console.log(err))
             })
                 .catch(err => console.log(err))
-        } else {
-            console.log("error", this.state)
-        }
+        
     }
+
     render() {
-        // console.log(this.state)
+       
 
         return (
             <div>
@@ -120,56 +83,56 @@ class Form extends Component {
                         <form role="form" onSubmit={this.handleSubmit}>
                             <div className="form-group">
                                 <p>Please choose the course of your choice:</p>
-                                <select name="course" className="form-control" id="choiceval" onChange={this.handleChange} >
+                                <select name="course" className="form-control" id="choiceval" onChange={this.handleChange}  >
                                     <option className="form-control"  > Select</option>
-                                    <option className="form-control" >Short Course(3months, 3 days in a week in the evening)</option>
-                                    <option className="form-control"    >N-5,N-4 & N-3 Course( 3 days in a week in the evening)</option>
-                                    <option className="form-control" >JLPT preparation className</option>
+                                    <option className="form-control" required="required" >Short Course(3months, 3 days in a week in the evening)</option>
+                                    <option className="form-control"   required="required" >N-5,N-4 & N-3 Course( 3 days in a week in the evening)</option>
+                                    <option className="form-control" required="required">JLPT preparation className</option>
                                 </select>
-                                <span style={{ color: 'red' }}>{this.state.course_em ? "" : "Must not be Empty"}</span>
+                              
                             </div>
                             <br />
                             <h4 className="h4 text-center">Personal Information:</h4>
                             <div className="form-group">
                                 <label htmlFor="Name">Name:</label>
-                                <input type="name" className="form-control" id="nameval" name="name" onChange={this.handleChange} />
-                                <span style={{ color: 'red' }}>{this.state.name_em ? "" : "Must not be Empty"}</span>
+                                <input type="name" className="form-control" id="nameval" name="name" onChange={this.handleChange} required="required"/>
+                               
                             </div>
                             <div className="form-group">
                                 <label htmlFor="Name">Father's Name:</label>
-                                <input type="name" className="form-control" id="fnameval" name="f_name" onChange={this.handleChange} />
-                                <span style={{ color: 'red' }}>{this.state.f_name_em ? "" : "Must not be Empty"}</span>
+                                <input type="name" className="form-control" id="fnameval" name="f_name" onChange={this.handleChange} required="required" />
+                             
                             </div>
                             <div className="form-group">
                                 <label htmlFor="Name">Mother's Name:</label>
-                                <input type="name" className="form-control" id="mnameval" name="m_name" onChange={this.handleChange} />
-                                <span style={{ color: 'red' }}>{this.state.m_name_em ? "" : "Must not be Empty"}</span>
+                                <input type="name" className="form-control" id="mnameval" name="m_name" onChange={this.handleChange} required="required"/>
+                                
                             </div>
                             <div className="form-group">
                                 <label htmlFor="Name">Date of Birth:</label>
-                                <input type="date" className="form-control" id="bdayval" name="b_day" onChange={this.handleChange} />
-                                <span style={{ color: 'red' }}>{this.state.b_day_em ? "" : "Must not be Empty"}</span>
+                                <input type="date" className="form-control" id="bdayval" name="b_day" onChange={this.handleChange} required="required"/>
+                               
                             </div>
                             <div className="form-group">
                                 <label htmlFor="state_id" className="control-label">Nationality</label>
-                                <select className="form-control" id="nationval" name="nationality" onChange={this.handleChange}>
+                                <select className="form-control" id="nationval" name="nationality" onChange={this.handleChange} required="required">
                                     <option value="Bangladeshi">Select</option>
                                     <option value="Bangladeshi">Bangladeshi</option>
                                     <option value="Japanis">japanese</option>
                                     <option value="Chinise">Chinies</option>
                                     <option value="Indian">Indian</option>
                                 </select>
-                                <span style={{ color: 'red' }}>{this.state.nationality_em ? "" : "Must not be Empty"}</span>
+                                
                             </div>
                             <div className="form-group">
                                 <label htmlFor="Name">Occopation:</label>
-                                <input type="name" className="form-control" id="occoval" name="occopation" onChange={this.handleChange} />
-                                <span style={{ color: 'red' }}>{this.state.occopation_em ? "" : "Must not be Empty"}</span>
+                                <input type="name" className="form-control" id="occoval" name="occopation" onChange={this.handleChange} required="required"/>
+                               
                             </div>
                             <div className="form-group">
                                 <label htmlFor="address">Present Address:</label>
-                                <input type="address" className="form-control" id="preval" name="address" onChange={this.handleChange} />
-                                <span style={{ color: 'red' }}>{this.state.address_em ? "" : "Must not be Empty"}</span>
+                                <input type="address" className="form-control" id="preval" name="address" onChange={this.handleChange} required="required"/>
+                                
                             </div>
                             <div className="form-group">
                                 <label htmlFor="number">Contact info:</label>
