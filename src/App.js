@@ -10,7 +10,7 @@ import DisData from './components/disData';
 function App() {
   return (
 
-    <div style={{ marginTop: '40px' }}>
+    <div className="container" style={{marginTop:'20px'}}>
       <Nav />
       <Switch>
         <Route exact path="/Language-Proficiency-Application" component={withRouter(Form)}/>
